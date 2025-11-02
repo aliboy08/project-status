@@ -28,8 +28,10 @@ function init_input(container){
 }
 
 function submit(page_name, project_slug){
+
     if( !page_name ) return;
-    ws.post('project/page/create', {
+    
+    ws.post('project/page/add', {
         page_name,
         project_slug,
     })

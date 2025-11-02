@@ -1,16 +1,16 @@
-import { server_hooks } from './globals.js';
+import { server } from './globals.js';
 import fs from 'fs';
 
-const projects = get_projects();
+const projects_overview = get_projects_overview();
 
-server_hooks.add('post/project/create', create_project)
-server_hooks.add('get/projects', send_projects)
+server.hooks.add('post/project/create', create_project)
+server.hooks.add('get/projects', send_projects)
 
 function send_projects({ ws }){
     if( !ws ) return;
     ws.send_client({
         type: 'projects/update',
-        projects,
+        projects: projects_overview,
     })
 }
 
@@ -20,7 +20,7 @@ function create_project({ args, ws }){
     
     const project = args.data;
 
-    projects.push(project)
+    projects_overview.push(project)
 
     const file_path = `./data/projects/${project.slug}.json`;
     
@@ -37,7 +37,7 @@ function create_project({ args, ws }){
     });
 }
 
-function get_projects(){
+function get_projects_overview(){
 
     const projects = [];
 

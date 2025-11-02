@@ -1,14 +1,14 @@
-import { server_hooks } from './globals.js';
+import { server } from './globals.js';
 
 let timeout;
 let users = [];
 
-// server_hooks.add('connect', send_users)
-// server_hooks.add('disconnect', remove_user)
-server_hooks.add('set/login', login)
-server_hooks.add('set/logout', logout)
-server_hooks.add('set/user', set_user)
-server_hooks.add('get/users', send_users)
+// server.hooks.add('connect', send_users)
+// server.hooks.add('disconnect', remove_user)
+server.hooks.add('set/login', login)
+server.hooks.add('set/logout', logout)
+server.hooks.add('set/user', set_user)
+server.hooks.add('get/users', send_users)
 
 function send_users({ ws }){
     ws.send_client({

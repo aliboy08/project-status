@@ -5,7 +5,9 @@ let container;
 
 import './title';
 import './pages';
-import './page_form';
+import './add';
+import './remove';
+import './assign';
 
 hooks.add('project/init', (e)=>{
     container = e.container;

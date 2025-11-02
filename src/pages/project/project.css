@@ -18,5 +18,13 @@
         .remove {
             cursor: pointer;
         }
+
+        .user {
+            width: 24px;
+            height: 24px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+        }
     }
 }

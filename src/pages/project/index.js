@@ -1,7 +1,9 @@
 import './project.css';
+
 import { create_div } from 'src/lib/utils';
 import { hooks } from 'src/main/globals';
-import 'modules/project/project_page/init';
+
+import 'modules/project/pages/init';
 
 export function render(params){
 
