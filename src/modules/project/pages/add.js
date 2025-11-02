@@ -18,7 +18,7 @@ function init({ data, container }){
 
 function init_input(container){
 
-    const con = create_div('input_con', container)
+    const con = create_div('add_page_form', container)
     const input = document.createElement('input')
     input.type = 'text';
     input.placeholder = 'Add Page';

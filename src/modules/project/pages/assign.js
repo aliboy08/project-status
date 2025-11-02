@@ -37,10 +37,19 @@ function display_user(args){
 
     const assigned_user = args.page.user;
     if( !assigned_user ) return
+    
+    if( args.el.user ) {
+        args.el.user.title = assigned_user.full_name;
+        args.el.user.style.backgroundImage = `url(${assigned_user.image_url})`;
+        return;
+    }
 
-    const el = create_div('user', args.el)
-    el.title = assigned_user.full_name;
-    el.style.backgroundImage = `url(${assigned_user.image_url})`;
+    const user_el = create_div('user')
+    args.el.prepend(user_el)
+    args.el.user = user_el;
+
+    user_el.title = assigned_user.full_name;
+    user_el.style.backgroundImage = `url(${assigned_user.image_url})`;
 }
 
 function update_page_user(e){
