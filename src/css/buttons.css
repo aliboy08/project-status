@@ -1,0 +1,15 @@
+button {
+    border: none;
+    font-size: 14px;
+    padding: 5px 12px;
+    background: #ffffff1f;
+    font-weight: 400;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.buttons_sm button,
+button.sm {
+    font-size: 12px;
+    padding: 5px 12px;
+}

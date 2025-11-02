@@ -1,0 +1,7 @@
+#page_header {
+    background: #00000023;
+    display: flex;
+    border-bottom: 1px solid #ffffff11;
+    align-items: center;
+    padding: 6px 8px;
+}

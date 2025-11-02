@@ -1,0 +1,5 @@
+.top_nav {
+    margin-left: auto;
+    display: flex;
+    gap: 7px;
+}

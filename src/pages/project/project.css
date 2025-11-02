@@ -1,0 +1,22 @@
+#page_project{
+    background: #0e0e0e25;
+    padding: 20px;
+}
+
+#page_project .title {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#page_project .pages {
+    margin-top: 20px;
+
+    .page {
+        display: flex;
+        gap: 10px;
+        
+        .remove {
+            cursor: pointer;
+        }
+    }
+}

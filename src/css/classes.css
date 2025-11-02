@@ -1,0 +1,23 @@
+@keyframes loading-dots {
+    0%, 100% { opacity: 1 }
+    50%{ opacity: 0 }
+}
+.loading-dots {
+    display: flex;
+    gap: 5px 10px;
+
+    i {
+        width: 6px;
+        height: 6px;
+        background: #ffffff70;
+        border-radius: 50%;
+        animation: loading-dots 1s ease infinite;
+
+        &:nth-child(2){
+            animation-delay: .3s;
+        }
+        &:nth-child(3){
+            animation-delay: .6s;
+        }
+    }
+}

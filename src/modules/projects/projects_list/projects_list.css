@@ -1,0 +1,14 @@
+.projects_list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    margin: 20px;
+
+    > div {
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
