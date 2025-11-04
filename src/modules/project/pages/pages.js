@@ -1,5 +1,6 @@
 import { create_div } from 'src/lib/utils'
 import { hooks } from 'src/main/globals'
+import { server_message } from 'src/main/globals';
 
 let pages;
 let pages_con;
@@ -7,8 +8,8 @@ let project_slug;
 let container;
 
 hooks.add('project/init_data', init)
-hooks.add('server/message/project/page/add', page_add)
-hooks.add('server/message/project/page/remove', page_remove)
+server_message.add('project/page/add', page_add)
+server_message.add('project/page/remove', page_remove)
 
 function init(e){
 

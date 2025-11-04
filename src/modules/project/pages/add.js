@@ -1,7 +1,7 @@
 import { get_user, on_enter } from 'src/lib/functions';
 import { create_div } from 'src/lib/utils'
 import { hooks } from 'src/main/globals'
-import { ws } from 'src/main/ws';
+import { server_request } from 'src/main/ws';
 
 hooks.add('project/init_data', init)
 
@@ -30,8 +30,8 @@ function init_input(container){
 function submit(page_name, project_slug){
 
     if( !page_name ) return;
-    
-    ws.post('project/page/add', {
+
+    server_request('project/page/add', {
         page_name,
         project_slug,
     })

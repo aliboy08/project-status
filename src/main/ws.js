@@ -1,18 +1,25 @@
-import { hooks } from 'src/main/globals'
+import { hooks, server_message } from 'src/main/globals'
 import { parse_json } from 'src/lib/utils';
 
 export const ws = new WebSocket('ws://localhost:8080');
 
 const reader = new FileReader();
 
-const parse_received_data = (data)=>{
-    data = parse_json(data);
-    hooks.do('server/message', data)
+const parse_received_data = (payload)=>{
 
-    // console.log('server/message', data)
-    if( data.type ) {
-        hooks.do(`server/message/${data.type}`, data)
+    payload = parse_json(payload);
+
+    // hooks.do('server/message', payload)
+
+    console.log('server/message', payload)
+
+    if( payload.key ) {
+        server_message.do(payload.key, payload.data ?? null)
     }
+    
+    // if( data.type ) {
+    //     hooks.do(`server/message/${data.type}`, data)
+    // }
 }
 
 reader.onload = () => parse_received_data(reader.result)
@@ -64,4 +71,12 @@ ws.send_data = (payload)=>{
         payload = JSON.stringify(payload);
     }
     ws.send(payload);
+}
+
+export function server_request(key, data = {}){
+    const payload = JSON.stringify({
+        key,
+        data
+    });
+    ws.send(payload)
 }

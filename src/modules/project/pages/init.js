@@ -1,5 +1,6 @@
 import { hooks } from 'src/main/globals';
-import { ws } from 'src/main/ws';
+import { server_message } from 'src/main/globals';
+import { server_request } from 'src/main/ws';
 
 let container;
 
@@ -11,12 +12,13 @@ import './assign';
 
 hooks.add('project/init', (e)=>{
     container = e.container;
-    ws.get('project', { slug: e.slug })
+    server_request('project', { slug: e.slug })
 })
 
-hooks.add('server/message/project', ({ project_data })=>{
+server_message.add('project', (data)=>{
+    if( !data.project ) return;
     hooks.do('project/init_data', {
-        data: project_data,
+        data: data.project,
         container,
     })
 })

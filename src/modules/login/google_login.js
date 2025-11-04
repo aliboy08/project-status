@@ -1,5 +1,7 @@
+import { create_div, set_cookie } from 'src/lib/utils';
 import { hooks } from 'src/main/globals';
-import { create_div } from 'src/lib/utils';
+import { server_request } from 'src/main/ws';
+import { load_page } from 'src/main/pages';
 
 export default function Google_Login(){
 
@@ -47,8 +49,11 @@ function on_google_signin(e){
         image_url: data.picture,
         email: data.email,
     }
-
-    hooks.do('google/signin', {user})    
+    
+    set_cookie('user', user)
+    server_request('login', { user })
+    hooks.do('login', { user })
+    load_page('/');
 }
 
 function decodeJwtResponse(token) {

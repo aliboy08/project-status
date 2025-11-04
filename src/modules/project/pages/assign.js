@@ -1,20 +1,19 @@
 import { create_div } from 'src/lib/utils'
 import { hooks, user } from 'src/main/globals'
-import { ws } from 'src/main/ws';
+import { server_message } from 'src/main/globals';
+import { server_request } from 'src/main/ws';
 
 let project_slug, pages;
 
 hooks.add('pages/init', (e)=>{
     project_slug = e.project_slug;
     pages = e.pages;
-
-    console.log({ pages, project_slug })
 })
 
 hooks.add('page/init', init_assign)
 hooks.add('page/init', display_user)
 
-hooks.add('server/message/project/page/assign', update_page_user)
+server_message.add('project/page/assign', update_page_user)
 
 function init_assign(args){
 
@@ -26,17 +25,20 @@ function init_assign(args){
 }
 
 function assign(args){
-    ws.post('project/page/assign', {
+    server_request('project/page/assign', {
         page_name: args.page.name,
         project_slug: args.project_slug,
-        user,
+        user: user.email,
     })
 }
 
 function display_user(args){
+    
+    if( !args.page.assigned?.length ) return
 
-    const assigned_user = args.page.user;
-    if( !assigned_user ) return
+    const assigned_user = args.page.assigned[0];
+
+    console.log('display_user', { args, assigned_user})
     
     if( args.el.user ) {
         args.el.user.title = assigned_user.full_name;
@@ -59,11 +61,9 @@ function update_page_user(e){
     const page = pages.find(i=>i.name===e.page_name)
     if( !page ) return;
 
-    page.user = e.user;
-
     display_user({
         el: page.el,
-        page,
+        page: e.page,
     });
 
 }

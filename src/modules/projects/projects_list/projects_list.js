@@ -1,31 +1,28 @@
 import './projects_list.css';
 import { create_div } from 'src/lib/utils';
-import { hooks } from 'src/main/globals';
+import { server_message } from 'src/main/globals';
 import { load_page } from 'src/main/pages';
+import { server_request } from 'src/main/ws';
 
-const projects = [];
+let projects = [];
 
 let loading_dots;
 let list_con;
 
-hooks.add_queue('ws/init', request_data)
-hooks.add('server/message/projects/update', update)
-hooks.add('server/message/project/create', add_new_project)
+server_message.add('projects', render_projects)
+// server_message.add('project/create', create_project)
 
-function request_data({ ws }){
-    ws.get('projects')
-}
+server_request('projects');
 
-function update(payload){
+function render_projects(data){
     remove_loading_dots();
-    remove_missing(payload.projects)
-    payload.projects.forEach(add_project)
+    data.projects.forEach(add_project)
 }
 
-function add_new_project(data){
-    if( !data.project ) return;
-    add_project(data.project)
-}
+// function create_project(data){
+//     if( !data.project ) return;
+//     add_project(data.project)
+// }
 
 function add_project(project){
     if( !project ) return;
@@ -38,14 +35,6 @@ function add_project(project){
 
     el.addEventListener('click', ()=>{
         load_page(`/project/${project.slug}`)
-    })
-}
-
-function remove_missing(new_projects){
-    projects.forEach(project=>{
-        if( new_projects.find(i=>i.slug===project.slug) ) return;
-        project.el.remove();
-        projects.splice(projects.indexOf(project), 1);
     })
 }
 
