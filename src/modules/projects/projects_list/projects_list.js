@@ -9,8 +9,8 @@ let projects = [];
 let loading_dots;
 let list_con;
 
-server_message.add('projects', render_projects)
-// server_message.add('project/create', create_project)
+server_message.on('projects', render_projects)
+// server_message.on('project/create', create_project)
 
 server_request('projects');
 

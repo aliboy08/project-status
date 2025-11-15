@@ -1,3 +1,6 @@
+@import './pages.css';
+@import './components.css';
+
 #page_project{
     background: #0e0e0e25;
     padding: 20px;
@@ -6,32 +9,4 @@
 #page_project .title {
     font-size: 20px;
     font-weight: 700;
-}
-
-#page_project .pages {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    .page {
-        display: flex;
-        gap: 10px;
-        
-        .remove {
-            cursor: pointer;
-        }
-
-        .user {
-            width: 24px;
-            height: 24px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 50%;
-        }
-    }
-}
-
-#page_project .add_page_form {
-    margin-top: 20px;
 }

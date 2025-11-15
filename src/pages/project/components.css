@@ -1,0 +1,14 @@
+#page_project {
+
+    .components_con {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .components {
+        border: 1px solid #ffffff3b;
+        padding: 10px;
+        border-radius: 3px;
+    }
+}

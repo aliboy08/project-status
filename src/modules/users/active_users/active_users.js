@@ -6,9 +6,9 @@ import { server_request } from 'src/main/ws';
 const users = [];
 let container;
 
-server_message.add('users', render_users)
-server_message.add('login', (data)=>add_user(data.user))
-server_message.add('logout', (data)=>remove_user(data.user))
+server_message.on('users', render_users)
+server_message.on('login', (data)=>add_user(data.user))
+server_message.on('logout', (data)=>remove_user(data.user))
 
 export function Active_Users(){
     server_request('users');

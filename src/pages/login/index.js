@@ -4,7 +4,7 @@ import { get_user } from 'src/lib/functions';
 import { load_page } from 'src/main/pages';
 import Google_Login from 'modules/login/google_login';
 
-hooks.add('page/login/before_render', ({ state })=>{
+hooks.on('page/login/before_render', ({ state })=>{
     if( get_user() ) {
         state.cancel_render = true;
         return load_page('/');

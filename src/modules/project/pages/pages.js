@@ -7,9 +7,9 @@ let pages_con;
 let project_slug;
 let container;
 
-hooks.add('project/init_data', init)
-server_message.add('project/page/add', page_add)
-server_message.add('project/page/remove', page_remove)
+hooks.on('project/init_data', init)
+server_message.on('page/add', page_add)
+server_message.on('page/remove', page_remove)
 
 function init(e){
 
@@ -31,7 +31,13 @@ function init(e){
 
 function init_item(page){
     
-    const el = create_div('page', pages_con, page.name)
+    const el = create_div('page', pages_con)
+    
+    el.dataset.id = page.id
+
+    create_div('page_name', el, page.name)
+
+    el.page_controls = create_div('page_controls', el)
 
     hooks.do('page/init', { el, page, project_slug })
 
@@ -53,11 +59,9 @@ function page_remove(e){
     
     if( project_slug !== e.project_slug ) return;
 
-    const index_to_remove = pages.findIndex(i=>i.name==e.page_name);
-
+    const index_to_remove = pages.findIndex(i=>i.id==e.page_id);
     if( index_to_remove === -1 ) return;
     
     pages[index_to_remove].el.remove();
-
     pages.splice(index_to_remove, 1);
 }

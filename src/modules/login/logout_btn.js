@@ -6,9 +6,9 @@ import { server_request } from 'src/main/ws';
 let add_button;
 let btn;
 
-hooks.add('login', init_button)
-hooks.add('logout', remove_button)
-hooks.add_queue('top_nav/init', (e)=>{
+hooks.on('login', init_button)
+hooks.on('logout', remove_button)
+hooks.on_queue('top_nav/init', (e)=>{
     add_button = e.add_button;
     if( get_user() ) {
         init_button();

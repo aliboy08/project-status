@@ -3,7 +3,7 @@ import { create_div } from 'src/lib/utils'
 import { hooks } from 'src/main/globals'
 import { server_request } from 'src/main/ws';
 
-hooks.add('project/init_data', init)
+hooks.on('project/init_data', init)
 
 function init({ data, container }){
 
@@ -31,7 +31,7 @@ function submit(page_name, project_slug){
 
     if( !page_name ) return;
 
-    server_request('project/page/add', {
+    server_request('page/add', {
         page_name,
         project_slug,
     })

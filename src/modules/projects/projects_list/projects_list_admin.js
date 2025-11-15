@@ -8,9 +8,9 @@ const projects = [];
 let loading_dots;
 let list_con;
 
-hooks.add_queue('ws/init', request_data)
-hooks.add('server/message/projects/update', update)
-hooks.add('server/message/project/create', add_new_project)
+hooks.on_queue('ws/init', request_data)
+hooks.on('server/message/projects/update', update)
+hooks.on('server/message/project/create', add_new_project)
 
 function request_data({ ws }){
     ws.get('projects')

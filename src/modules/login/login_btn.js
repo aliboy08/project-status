@@ -5,9 +5,9 @@ let user;
 let btn;
 let add_button;
 
-hooks.add('login', remove_button)
-hooks.add('logout', init_button)
-hooks.add_queue('top_nav/init', init)
+hooks.on('login', remove_button)
+hooks.on('logout', init_button)
+hooks.on_queue('top_nav/init', init)
 function init(e){
     add_button = e.add_button;
     user = get_user();

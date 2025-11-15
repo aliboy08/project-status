@@ -10,12 +10,14 @@ import './add';
 import './remove';
 import './assign';
 
-hooks.add('project/init', (e)=>{
+import '../components/init';
+
+hooks.on('project/init', (e)=>{
     container = e.container;
     server_request('project', { slug: e.slug })
 })
 
-server_message.add('project', (data)=>{
+server_message.on('project', (data)=>{
     if( !data.project ) return;
     hooks.do('project/init_data', {
         data: data.project,

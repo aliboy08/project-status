@@ -4,7 +4,7 @@ import { get_page_import } from 'src/functions';
 
 const page_body = get_el('#page_body')
 
-hooks.add('init', load_page)
+hooks.on('init', load_page)
 
 export function load_page(path = null, args = {}){
 
