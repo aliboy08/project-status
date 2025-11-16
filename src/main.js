@@ -1,6 +1,6 @@
 import './style.css'
 
-import { hooks, user } from './main/globals';
+import { hooks } from './main/globals';
 
 import 'src/main/init';
 

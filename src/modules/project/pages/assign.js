@@ -19,7 +19,7 @@ function init_assign(args){
 
     if( !user ) return;
 
-    create_div('', args.el.page_controls, 'Assign').onclick = ()=>{
+    create_div('', args.el.controls, 'Assign').onclick = ()=>{
         assign(args)
     };
 }
@@ -35,8 +35,6 @@ function assign(args){
 function display_user(args){
     
     if( !args.page.assigned?.length ) return
-
-    console.log('display_user', args)
 
     const assigned_user = args.page.assigned[0];
     

@@ -12,15 +12,18 @@ import './assign';
 
 import '../components/init';
 
-hooks.on('project/init', (e)=>{
-    container = e.container;
-    server_request('project', { slug: e.slug })
-})
+hooks.on('project/init', init_project)
+server_message.on('project', init_project_data)
 
-server_message.on('project', (data)=>{
+function init_project(e){
+    container = e.container;
+    server_request('project', { project_id: e.project_id })
+}
+
+function init_project_data(data){
     if( !data.project ) return;
     hooks.do('project/init_data', {
         data: data.project,
         container,
     })
-})
+}

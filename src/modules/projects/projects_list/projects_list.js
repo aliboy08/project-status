@@ -26,7 +26,7 @@ function render_projects(data){
 
 function add_project(project){
     if( !project ) return;
-    if( projects.find(i=>i.slug===project.slug) ) return;
+    if( projects.find(i=>i.id===project.id) ) return;
 
     projects.push(project)
     
@@ -34,7 +34,7 @@ function add_project(project){
     project.el = el;
 
     el.addEventListener('click', ()=>{
-        load_page(`/project/${project.slug}`)
+        load_page(`/project/${project.id}`)
     })
 }
 

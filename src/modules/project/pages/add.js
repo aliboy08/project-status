@@ -12,7 +12,14 @@ function init({ data, container }){
     const input_name = init_input(container);
 
     on_enter(input_name, (page_name)=>{
-        submit(page_name, data.slug)
+
+        if( !page_name ) return;
+
+        server_request('page/add', {
+            page_name,
+            project_id: data.id,
+        })
+        
     })
 }
 
@@ -25,14 +32,4 @@ function init_input(container){
     con.append(input)
     
     return input;
-}
-
-function submit(page_name, project_slug){
-
-    if( !page_name ) return;
-
-    server_request('page/add', {
-        page_name,
-        project_slug,
-    })
 }

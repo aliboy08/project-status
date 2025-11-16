@@ -5,16 +5,21 @@ import { server_request } from 'src/main/ws';
 
 hooks.on('components/init', init)
 
-function init({ page, container, project_slug }){
+function init({ page, components_con, project_id }){
 
     if( !get_user() ) return;
 
-    // console.log('component/add', {page, container, project_slug})
-
-    const input_name = init_input(container);
+    const input_name = init_input(components_con);
 
     on_enter(input_name, (component_name)=>{
-        submit(component_name, project_slug, page.name)
+
+        if( !component_name ) return;
+
+        server_request('component/add', {
+            component_name,
+            project_id,
+            page_id: page.id,
+        })
     })
 }
 
@@ -27,15 +32,4 @@ function init_input(container){
     con.append(input)
     
     return input;
-}
-
-function submit(component_name, project_slug, page_name){
-
-    if( !component_name ) return;
-
-    server_request('component/add', {
-        component_name,
-        project_slug,
-        page_name,
-    })
 }

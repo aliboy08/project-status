@@ -29,7 +29,7 @@ function add_new_project(data){
 
 function add_project(project){
     if( !project ) return;
-    if( projects.find(i=>i.slug===project.slug) ) return;
+    if( projects.find(i=>i.id===project.id) ) return;
 
     projects.push(project)
     
@@ -37,13 +37,13 @@ function add_project(project){
     project.el = el;
 
     el.addEventListener('click', ()=>{
-        load_page(`/admin/project/${project.slug}`)
+        load_page(`/admin/project/${project.id}`)
     })
 }
 
 function remove_missing(new_projects){
     projects.forEach(project=>{
-        if( new_projects.find(i=>i.slug===project.slug) ) return;
+        if( new_projects.find(i=>i.id===project.id) ) return;
         project.el.remove();
         projects.splice(projects.indexOf(project), 1);
     })

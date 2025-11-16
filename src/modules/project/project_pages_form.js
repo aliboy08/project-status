@@ -2,7 +2,7 @@ import { create_div } from 'src/lib/utils';
 import { ws } from 'src/main/ws';
 import { on_enter } from 'src/lib/functions';
 
-export function Project_Pages_Form(slug){
+export function Project_Pages_Form(id){
 
     const container = create_div('projects_form')
 
@@ -14,7 +14,7 @@ export function Project_Pages_Form(slug){
     on_enter(name_input, (page_name)=>{
         submit({
             page_name,
-            project_slug: slug,
+            project_id: id,
         })
     })
 
@@ -35,6 +35,6 @@ function create_input(args){
 }
 
 function submit(args){
-    if( !args.page_name || !args.project_slug ) return;
+    if( !args.page_name || !args.project_id ) return;
     ws.post('project/page/create', args)
 }

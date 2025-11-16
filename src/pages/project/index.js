@@ -8,9 +8,9 @@ import 'modules/project/pages/init';
 export function render(params){
 
     const container = create_div('#page_project')
-    const slug = params.path_args[1];
+    const project_id = params.path_args[1];
 
-    hooks.do('project/init', { container, slug })
+    hooks.do('project/init', { container, project_id })
 
     return container;
 }

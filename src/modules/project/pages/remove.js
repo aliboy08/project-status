@@ -8,7 +8,7 @@ function init_remove({ el, page, project_slug }){
 
     if( !user ) return;
 
-    create_div('delete', el.page_controls, 'Remove').onclick = ()=>{
+    create_div('delete', el.controls, 'Remove').onclick = ()=>{
         server_request('page/remove', {
             page_id: page.id,
             project_slug,
