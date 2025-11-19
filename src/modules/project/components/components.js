@@ -14,7 +14,7 @@ function init_components({ el, page, project_id }){
         const el = create_el(component);
         component.el = el;
         container.append(el)
-        hooks.do('component/init', { component })
+        hooks.do('component/init', { component, page, project_id })
     }
 
     page.add_component = add_component;
@@ -24,7 +24,6 @@ function init_components({ el, page, project_id }){
 }
 
 function component_add(e){
-    console.log('component_add', e)
     const page = hooks.get('project/page', e)
     if( !page ) return;
     page.add_component(e.component);

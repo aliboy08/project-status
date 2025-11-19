@@ -11,5 +11,13 @@
         border: 1px solid #ffffff3b;
         padding: 10px;
         border-radius: 3px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .component {
+            display: flex;
+            gap: 10px;
+        }
     }
 }

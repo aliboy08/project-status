@@ -3,10 +3,10 @@ import { hooks, user } from 'src/main/globals'
 import { server_message } from 'src/main/globals';
 import { server_request } from 'src/main/ws';
 
-let project_slug, pages;
+let project_id, pages;
 
 hooks.on('pages/init', (e)=>{
-    project_slug = e.project_slug;
+    project_id = e.project_id;
     pages = e.pages;
 })
 
@@ -27,7 +27,7 @@ function init_assign(args){
 function assign(args){
     server_request('page/assign', {
         page_id: args.page.id,
-        project_slug: args.project_slug,
+        project_id: args.project_id,
         user: user.email,
     })
 }
@@ -35,6 +35,8 @@ function assign(args){
 function display_user(args){
     
     if( !args.page.assigned?.length ) return
+    
+    console.log('page/display_user', args)
 
     const assigned_user = args.page.assigned[0];
     
@@ -54,7 +56,7 @@ function display_user(args){
 
 function update_page_user(e){
 
-    if( project_slug !== e.project_slug ) return;
+    if( project_id !== e.project_id ) return;
     
     const page = pages.find(i=>i.id===e.page_id)
     if( !page ) return;

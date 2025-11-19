@@ -24,8 +24,6 @@ function init(e){
     
     pages = data.pages;
     project_id = data.id;
-
-    console.log({pages})
     
     data.pages.forEach(create_el)
 
